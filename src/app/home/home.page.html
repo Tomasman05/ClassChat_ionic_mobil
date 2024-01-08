@@ -12,9 +12,33 @@
       <ion-title size="large">IphoneClassChat</ion-title>
     </ion-toolbar>
   </ion-header>
-
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+<div class="container">
+  <div>
+    <ion-list>
+      <ion-item *ngFor="let message of messages" class="row">
+        <div>
+          <div class="col-2">
+            {{message.user}}
+          </div>
+          <div class="col-10">
+            {{message.content}}
+            {{message.time}}
+            <div *ngIf="message.user=userName"></div>
+            <ion-button shape="round" (click)="editMessage()">Edit</ion-button>
+            <ion-button shape="round" (click)="deleteMessage()">Delete</ion-button>
+          </div>
+          <br>
+        </div>
+      </ion-item>
+    </ion-list>
+    <ion-list>
+      <ion-item>
+        <ion-textarea [(ngModel)]="newMessage" labelPlacement="floating" value="Bakxtale taves">
+          <div slot="label">Message<ion-text color="danger">(Required)</ion-text></div>
+        </ion-textarea>
+      </ion-item>
+    </ion-list>
+    <ion-button shape="round" (click)="addMessage()">Send</ion-button>
   </div>
+</div>
 </ion-content>
